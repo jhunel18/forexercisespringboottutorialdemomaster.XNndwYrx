@@ -47,7 +47,7 @@ class StudentControllerTest {
         StudentEntity student = new StudentEntity(1, "Jhunel",1,"Unisan,Quezon");
         given(studentService.getStudentById(studentId)).willReturn(student);
         //When the getStudentById request is executed
-        mockMvc.perform(MockMvcRequestBuilders.post("/student/").contentType(MediaType.APPLICATION_JSON).content("{\r\n" +
+        mockMvc.perform(MockMvcRequestBuilders.get("/student/").contentType(MediaType.APPLICATION_JSON).content("{\r\n" +
                 "  \"id\": 1,\r\n" +
                 "  \"name\": \"Jhunel\",\r\n" +
                 "  \"rollNo\": 1,\r\n" +
