@@ -10,10 +10,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(StudentController.class)
 class StudentControllerTest {
@@ -37,7 +39,7 @@ class StudentControllerTest {
                 "  \"rollNo\": 1,\r\n" +
                 "  \"address\": \"Test Address" +"\"\r\n" +
                 //Then: The request result should return an OK status
-                "}")).andExpect(MockMvcResultMatchers.status().isOk());
+                "}")).andExpect(status().isOk());
     }
     @Test
     @DisplayName("This tests if studentId is existing, then will return an okay Status")
@@ -47,13 +49,14 @@ class StudentControllerTest {
         StudentEntity student = new StudentEntity(1, "Jhunel",1,"Unisan,Quezon");
         given(studentService.getStudentById(studentId)).willReturn(student);
         //When the getStudentById request is executed
-        mockMvc.perform(MockMvcRequestBuilders.get("/student/").contentType(MediaType.APPLICATION_JSON).content("{\r\n" +
-                "  \"id\": 1,\r\n" +
-                "  \"name\": \"Jhunel\",\r\n" +
-                "  \"rollNo\": 1,\r\n" +
-                "  \"address\": \"Unisan,Quezon" +"\"\r\n" +
-                //Then: The request result should return an OK status
-                "}")).andExpect(MockMvcResultMatchers.status().isOk());
+//        mockMvc.perform(MockMvcRequestBuilders.get("/student/").contentType(MediaType.APPLICATION_JSON).content("{\r\n" +
+//                "  \"id\": 1,\r\n" +
+//                "  \"name\": \"Jhunel\",\r\n" +
+//                "  \"rollNo\": 1,\r\n" +
+//                "  \"address\": \"Unisan,Quezon" +"\"\r\n" +
+//                //Then: The request result should return an OK status
+//                "}")).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(get("/student//{student-id}", studentId)).andExpect(status().isOk());
         //Then the result should be ok
     }
 }
