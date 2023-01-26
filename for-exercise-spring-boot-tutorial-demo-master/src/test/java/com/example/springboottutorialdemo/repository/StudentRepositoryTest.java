@@ -43,12 +43,13 @@ class StudentRepositoryTest {
     public void testFindByName(){
 
         //Given that there are multiple student entities with same values in name="Test Name" column/attribute
+        String studentName = "Jhunel";
         StudentEntity student1 = new StudentEntity(1,"Jhunel",1,"Unisan, Quezon");
         StudentEntity student2 = new StudentEntity(2,"Jhunel",2,"Unisan, Quezon");
         testEntityManager.persist(student1);
         testEntityManager.persist(student2);
-        //When the studentRepository findByNameadd method is executed
-        String studentName = "Jhunel";
+        //When the studentRepository findByName method is executed
+
         List<StudentEntity> result = studentRepository.findByName(studentName);
         //Then the name attribute of all student entities retrieved from database should equal "Test Name"
         assertEquals(result.get(0).getName(),student1.getName());
