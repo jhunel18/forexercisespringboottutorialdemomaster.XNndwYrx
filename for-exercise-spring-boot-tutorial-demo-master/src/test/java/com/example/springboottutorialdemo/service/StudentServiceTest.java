@@ -59,12 +59,14 @@ class StudentServiceTest {
 
     public void testAddStudent() {
         //Given that there is a new student entity
+        StudentEntity studentTest = new StudentEntity("Jhunel",4, "Unisan,Quezon");
         StudentEntity student = new StudentEntity(1, "Jhunel", 4, "Unisan,Quezon");
-        given(studentRepository.save(student)).willReturn(student);
+
+        given(studentRepository.save(studentTest)).willReturn(student);
         //When the studentService add student method is executed
-        StudentEntity resultStudent = studentService.addStudent(student);
+        StudentEntity resultStudent = studentService.addStudent(studentTest);
         //Then it should return the new student entity saved in the studentRepository
-        assertEquals(resultStudent, student);
+        assertEquals(student, resultStudent);
 
     }
 

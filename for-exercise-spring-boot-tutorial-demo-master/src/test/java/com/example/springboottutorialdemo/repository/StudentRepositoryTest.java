@@ -39,7 +39,7 @@ class StudentRepositoryTest {
     //Added Test
 
     @Test
-    @DisplayName("This test that studentRepository will rerieve a student entity")
+    @DisplayName("This test that studentRepository will retrieve a student entity")
     public void testFindByName(){
 
         //Given that there are multiple student entities with same values in name="Test Name" column/attribute
